@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Petition.Data;
 using Petition.Models;
 
 namespace Petition
@@ -32,13 +35,18 @@ namespace Petition
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            services.AddIdentity<Petitioner, IdentityRole>(config =>
+            {
+                config.SignIn.RequireConfirmedEmail = false;
+            }).AddEntityFrameworkStores<PetitionContext>();
             services.AddDbContext<PetitionContext>(options =>
-        //options.UseLazyLoadingProxies()
-        options.UseSqlServer(
+        options.UseLazyLoadingProxies()
+        .UseSqlServer(
         Configuration.GetConnectionString("PetitionContextConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<IEmailSender, EmailSender>();
         }
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

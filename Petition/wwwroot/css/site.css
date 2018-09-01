@@ -8,6 +8,8 @@ for details on configuring this project to bundle and minify static web assets. 
 
 body {
     padding-bottom: 20px;
+    background-color: #f4f4f4;
+    font-family: Proxima-Nova-Regular;
 }
 
 /* Wrapping element */
@@ -64,4 +66,9 @@ body {
     font-family: Proxima-Nova-Regular;
     font-size: 20px;
     font-weight: bold;
+}
+
+.mainnav_right {
+    position: relative;
+    left: 80%;
 }

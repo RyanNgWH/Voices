@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Petition.Data;
 
 namespace Petition.Models
 {
-    public class PetitionContext : IdentityDbContext<IdentityUser>
+    public class PetitionContext : IdentityDbContext<Petitioner>
     {
         public PetitionContext(DbContextOptions<PetitionContext> options)
             : base(options)
