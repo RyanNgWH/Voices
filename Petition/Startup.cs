@@ -45,6 +45,10 @@ namespace Petition
         Configuration.GetConnectionString("PetitionContextConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IEmailSender, EmailSender>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Identity/Account/Login";
+            });
         }
         
 

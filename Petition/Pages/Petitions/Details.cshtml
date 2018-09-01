@@ -12,7 +12,7 @@
 <h1 class="title">@Html.DisplayFor(model => model.PetitionModel.Title)</h1>
 
 <div class="left">
-    <img class="image" src="~/images/Details/francisco-moreno-67179-unsplash.jpg" />
+    <img class="image" src="~/petition-photos/@Model.PetitionModel.Photo" />
 
     <h2 class="descriptionHeader">@Html.DisplayNameFor(model => model.PetitionModel.Description)</h2>
 
@@ -34,7 +34,7 @@
                     <img class="icon" src="~/images/default_pic.png" />
                 </td>
                 <td class="userDetails">
-                    <strong>(Name of user)</strong> initiated this voice on <strong>@Model.PetitionModel.DateCreated.ToString("dd/MM/yyyy")</strong>
+                    <strong>@Html.DisplayFor(model => model.PetitionModel.Creator.FullName)</strong> initiated this voice on <strong>@Model.PetitionModel.DateCreated.ToString("dd/MM/yyyy")</strong>
                 </td>
             </tr>
             <tr>
@@ -42,7 +42,7 @@
                     <img class="icon" src="~/images/Details/placeholder.png" />
                 </td>
                 <td class="userDetails">
-                    <strong>(Region)</strong>
+                    <strong>@Html.DisplayFor(model => model.PetitionModel.Region)</strong>
                 </td>
             </tr>
             <tr>
@@ -50,7 +50,7 @@
                     <img class="icon" src="~/images/Details/speedometer.png" />
                 </td>
                 <td class="userDetails">
-                    <strong>(Status)</strong>
+                    <strong>@Html.DisplayFor(model => model.PetitionModel.Status)</strong>
                 </td>
             </tr>
             <tr>
@@ -58,14 +58,25 @@
                     <img class="icon" src="~/images/Details/signature-number-icon.png" />
                 </td>
                 <td class="userDetails">
-                    <strong>(Number of Votes)</strong> users support this voice!
+                    <strong>@Html.DisplayFor(model => model.PetitionModel.Votes)</strong> users support this voice!
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <button type="submit" class="btn btn-action btn-big btn-full js-sign-button button">
-                        Support this voice
-                    </button>
+                    <form method="post" asp-page-handler="AddSupport">
+                        @if (Model.hasVoted)
+                        {
+                            <button type="submit" class="btn btn-action btn-big btn-full js-sign-button button">
+                                Support this voice
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-action btn-big btn-full js-sign-button button">
+                                Thanks for your support! :)
+                            </button>
+                        }
+                    </form>
                 </td>
             </tr>
         </table>
@@ -95,72 +106,3 @@
         </table>
     </div>
 </div>
-
-
-
-@*<h2>Details</h2>
-
-    <div>
-        <h4>PetitionModel</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.PetitionModel.Title)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.PetitionModel.Title)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.PetitionModel.Address)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.PetitionModel.Address)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.PetitionModel.Description)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.PetitionModel.Description)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.PetitionModel.DateCreated)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.PetitionModel.DateCreated)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.PetitionModel.Photo)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.PetitionModel.Photo)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.PetitionModel.Category)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.PetitionModel.Category)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.PetitionModel.Status)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.PetitionModel.Status)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.PetitionModel.Votes)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.PetitionModel.Votes)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.PetitionModel.Name)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.PetitionModel.Name)
-            </dd>
-        </dl>
-    </div>
-    <div>
-        <a asp-page="./Edit" asp-route-id="@Model.PetitionModel.PetitionModelId">Edit</a> |
-        <a asp-page="./Index">Back to List</a>
-    </div>*@
