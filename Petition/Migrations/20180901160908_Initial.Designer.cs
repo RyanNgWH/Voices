@@ -10,8 +10,8 @@ using Petition.Models;
 namespace Petition.Migrations
 {
     [DbContext(typeof(PetitionContext))]
-    [Migration("20180901104947_Petition")]
-    partial class Petition
+    [Migration("20180901160908_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -168,6 +168,8 @@ namespace Petition.Migrations
 
                     b.Property<string>("ProfilePicture");
 
+                    b.Property<string>("Region");
+
                     b.Property<string>("ResidentialAddress");
 
                     b.Property<string>("SecurityStamp");
@@ -195,25 +197,31 @@ namespace Petition.Migrations
                     b.Property<string>("PetitionModelId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Address");
+                    b.Property<string>("Category")
+                        .IsRequired();
 
-                    b.Property<string>("Category");
+                    b.Property<string>("CreatorId");
 
                     b.Property<DateTime>("DateCreated");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Photo")
+                        .IsRequired();
 
-                    b.Property<string>("Photo");
+                    b.Property<string>("Region");
 
                     b.Property<string>("Status");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.Property<int>("Votes");
 
                     b.HasKey("PetitionModelId");
+
+                    b.HasIndex("CreatorId");
 
                     b.ToTable("PetitionModel");
                 });
@@ -261,6 +269,13 @@ namespace Petition.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Petition.Data.PetitionModel", b =>
+                {
+                    b.HasOne("Petition.Data.Petitioner", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId");
                 });
 #pragma warning restore 612, 618
         }

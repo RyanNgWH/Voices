@@ -61,6 +61,8 @@ namespace Petition.Areas.Identity.Pages.Account
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
+
+            public string Region { get; set; }
         }
 
         public void OnGet(string returnUrl = null)
@@ -73,7 +75,11 @@ namespace Petition.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new Petitioner { UserName = Input.Email, Email = Input.Email, ResidentialAddress = Input.Address, NRIC = Input.NRIC, ProfilePicture = "default_pic.png", FullName = Input.FullName };
+                if(Input.Region == null)
+                {
+                    Input.Region = "";
+                }
+                var user = new Petitioner { UserName = Input.Email, Email = Input.Email, ResidentialAddress = Input.Address, NRIC = Input.NRIC, ProfilePicture = "default_pic.png", FullName = Input.FullName, Region = Input.Region };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

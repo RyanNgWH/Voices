@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Input.Address"></label>
-                    <input asp-for="Input.Address" class="form-control" placeholder="Address" />
+                    <input id="address" asp-for="Input.Address" class="form-control" placeholder="Address" />
                     <span asp-validation-for="Input.Address" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -39,11 +39,41 @@
                     <input asp-for="Input.Password" class="form-control" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
+                <input id="region" asp-for="Input.Region" type="hidden"/>
                 <button type="submit" class="btn btn-default">Register</button>
             </form>
         </div>
     </div>
 </div>
+
+<script defer>
+    var address = document.getElementById("address");
+    address.addEventListener("change", function () {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let resp = this.responseText;
+                let response = JSON.parse(resp);
+                let latitude = response["results"][0]["LATITUDE"];
+                let longitude = response["results"][0]["LONGITUDE"];
+                var xhttp2 = new XMLHttpRequest();
+                xhttp2.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        let resp = this.responseText;
+                        let response = JSON.parse(resp);
+                        var region = document.getElementById("region");
+                        region.value = response[0]["pln_area_n"];
+                        alert(region.value);
+                    }
+                }
+                xhttp2.open("GET", "https://developers.onemap.sg/privateapi/popapi/getPlanningarea?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5NDMsInVzZXJfaWQiOjE5NDMsImVtYWlsIjoiYnJpYW5AYmNoZXd5LmNvbSIsImZvcmV2ZXIiOmZhbHNlLCJpc3MiOiJodHRwOlwvXC9vbTIuZGZlLm9uZW1hcC5zZ1wvYXBpXC92MlwvdXNlclwvc2Vzc2lvbiIsImlhdCI6MTUzNTc3NDQxOCwiZXhwIjoxNTM2MjA2NDE4LCJuYmYiOjE1MzU3NzQ0MTgsImp0aSI6Ijg0NDgxNWMzM2M5OWJiMDk5OGZkNmY5YmJjNTM5YTlkIn0.ZEY0G0asd3U2UqWULR3tBCIPeKFCLQQoxD-ckRUzW0I&lat=" + latitude + "&lng=" + longitude);
+                xhttp2.send();
+            }
+        }
+        xhttp.open("GET", "https://developers.onemap.sg/commonapi/search?searchVal=" + address.value + "&returnGeom=Y&getAddrDetails=N", true);
+        xhttp.send();
+    });
+</script>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

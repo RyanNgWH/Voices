@@ -4,51 +4,271 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h2>Create</h2>
-
-<h4>PetitionModel</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="PetitionModel.Title" class="control-label"></label>
-                <input asp-for="PetitionModel.Title" class="form-control" required/>
-                <span asp-validation-for="PetitionModel.Title" class="text-danger"></span>
+    @*<div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="InputPetitionModel.Title" class="control-label"></label>
+                    <input asp-for="InputPetitionModel.Title" class="form-control" required/>
+                    <span asp-validation-for="InputPetitionModel.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InputPetitionModel.Region" class="control-label"></label>
+                    <input asp-for="InputPetitionModel.Region" class="form-control" />
+                    <span asp-validation-for="InputPetitionModel.Region" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InputPetitionModel.Description" class="control-label"></label>
+                    <input asp-for="InputPetitionModel.Description" class="form-control" required/>
+                    <span asp-validation-for="InputPetitionModel.Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InputPetitionModel.Photo" class="control-label"></label>
+                    <input asp-for="InputPetitionModel.Photo" class="form-control" />
+                    <span asp-validation-for="InputPetitionModel.Photo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="InputPetitionModel.Category" class="control-label"></label>
+                    <input asp-for="InputPetitionModel.Category" class="form-control" />
+                    <span asp-validation-for="InputPetitionModel.Category" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>*@
+    <style>
+        body#LoginForm {
+            background-image: url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            padding: 10px;
+        }
+
+        .form-heading {
+            color: #fff;
+            font-size: 23px;
+        }
+
+        .panel h2 {
+            color: #444444;
+            font-size: 18px;
+            margin: 0 0 8px 0;
+        }
+
+        .panel p {
+            color: #777777;
+            font-size: 14px;
+            margin-bottom: 30px;
+            line-height: 24px;
+        }
+
+        .login-form .form-control {
+            background: #f7f7f7 none repeat scroll 0 0;
+            border: 1px solid #d4d4d4;
+            border-radius: 4px;
+            font-size: 14px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .main-div {
+            background: #ffffff none repeat scroll 0 0;
+            border-radius: 2px;
+            margin: 10px auto 30px;
+            max-width: 70%;
+            padding: 20px;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 10px;
+        }
+
+        .login-form {
+            text-align: center;
+        }
+
+        .forgot a {
+            color: #777777;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+
+        .login-form .btn.btn-primary {
+            background: #f0ad4e none repeat scroll 0 0;
+            border-color: #f0ad4e;
+            color: #ffffff;
+            font-size: 14px;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            padding: 0;
+        }
+
+        .forgot {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .botto-text {
+            color: #ffffff;
+            font-size: 14px;
+            margin: auto;
+        }
+
+        .login-form .btn.btn-primary.reset {
+            background: #ff9900 none repeat scroll 0 0;
+        }
+
+        .back {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+            .back a {
+                color: #444444;
+                font-size: 13px;
+                text-decoration: none;
+            }
+
+        #inputDescription {
+            height: 300px;
+        }
+
+        .files input {
+            outline: 2px dashed #92b0b3;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            padding: 120px 0px 85px 35%;
+            text-align: center !important;
+            margin: 0;
+            width: 100% !important;
+        }
+
+            .files input:focus {
+                outline: 2px dashed #92b0b3;
+                outline-offset: -10px;
+                -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                border: 1px solid #92b0b3;
+            }
+
+        .files {
+            position: relative
+        }
+
+            .files:after {
+                pointer-events: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 50px;
+                right: 0;
+                height: 56px;
+                content: "";
+                background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+                display: block;
+                margin: 0 auto;
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+
+        .color input {
+            background-color: #f1f1f1;
+        }
+    </style>
+    <div id="LoginForm">
+        <div class="container">
+            <div class="login-form">
+                <div class="main-div">
+                    <div class="panel">
+                        <h1 style="font-weight: bold;">Create your petition</h1>
+                        <p>Enter the appropriate fields</p>
+                    </div>
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="form-group" onclick="document.getElementById('petition-image').click()">
+                            <div class="form-group files">
+                                <label>Upload Your Petition Image </label>
+                                <input asp-for="@Model.PetitionPicture" id="petition-image" type="file" class="form-control" multiple="" style="visibility: hidden;">
+                                <img id="petition-image-real" width="380" style="position: relative; top: -180px; z-index: 100;" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputHeadline">Petiton Title</label>
+                            <input asp-for="@Model.InputPetitionModel.Title" type="text" class="form-control" id="inputHeadline" placeholder="Enter your petition title">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDescription">Description of Petition</label>
+                            <input asp-for="@Model.InputPetitionModel.Description" type="text" class="form-control" placeholder="Enter your petition description"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLocation">Region of Petition</label>
+                            <input asp-for="@Model.InputPetitionModel.Region" type="text" class="form-control" id="inputRegion" placeholder="Voice affected area">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Submit</button>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="PetitionModel.Address" class="control-label"></label>
-                <input asp-for="PetitionModel.Address" class="form-control" />
-                <span asp-validation-for="PetitionModel.Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PetitionModel.Description" class="control-label"></label>
-                <input asp-for="PetitionModel.Description" class="form-control" required/>
-                <span asp-validation-for="PetitionModel.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PetitionModel.Photo" class="control-label"></label>
-                <input asp-for="PetitionModel.Photo" class="form-control" />
-                <span asp-validation-for="PetitionModel.Photo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PetitionModel.Category" class="control-label"></label>
-                <input asp-for="PetitionModel.Category" class="form-control" />
-                <span asp-validation-for="PetitionModel.Category" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PetitionModel.Name" class="control-label"></label>
-                <input asp-for="PetitionModel.Name" class="form-control" />
-                <span asp-validation-for="PetitionModel.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
     </div>
+
+
 </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+    crossorigin="anonymous"></script>
+
+<script defer>
+    function Change() {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById("petition-image-real").src = e.target.result;
+        };
+        reader.readAsDataURL(this.files[0]);
+    };
+    document.getElementById("petition-image").addEventListener("change", Change);
+
+    var region = document.getElementById("inputRegion");
+    region.addEventListener("change", function () {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let resp = this.responseText;
+                let response = JSON.parse(resp);
+                if (response["found"] === 0) {
+                    region.value = "Nation-Wide";
+                    return;
+                }
+                let latitude = response["results"][0]["LATITUDE"];
+                let longitude = response["results"][0]["LONGITUDE"];
+                var xhttp2 = new XMLHttpRequest();
+                xhttp2.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        let resp = this.responseText;
+                        let response = JSON.parse(resp);
+                        region.value = response[0]["pln_area_n"];
+                    }
+                }
+                xhttp2.open("GET", "https://developers.onemap.sg/privateapi/popapi/getPlanningarea?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5NDMsInVzZXJfaWQiOjE5NDMsImVtYWlsIjoiYnJpYW5AYmNoZXd5LmNvbSIsImZvcmV2ZXIiOmZhbHNlLCJpc3MiOiJodHRwOlwvXC9vbTIuZGZlLm9uZW1hcC5zZ1wvYXBpXC92MlwvdXNlclwvc2Vzc2lvbiIsImlhdCI6MTUzNTc3NDQxOCwiZXhwIjoxNTM2MjA2NDE4LCJuYmYiOjE1MzU3NzQ0MTgsImp0aSI6Ijg0NDgxNWMzM2M5OWJiMDk5OGZkNmY5YmJjNTM5YTlkIn0.ZEY0G0asd3U2UqWULR3tBCIPeKFCLQQoxD-ckRUzW0I&lat=" + latitude + "&lng=" + longitude);
+                xhttp2.send();
+            }
+        }
+        xhttp.open("GET", "https://developers.onemap.sg/commonapi/search?searchVal=" + region.value + "&returnGeom=Y&getAddrDetails=N", true);
+        xhttp.send();
+    });
+
+
+</script>
 
 <div>
     <a asp-page="Index">Back to List</a>

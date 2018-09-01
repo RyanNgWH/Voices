@@ -8,9 +8,9 @@ namespace Petition.Data
     public class Signature
     {
         public string SignatureId { get; set; }
-        public PetitionModel Petition { get; set; }
+        public virtual PetitionModel Petition { get; set; }
         public DateTime DateCreated { get; set; }
-        public Petitioner Signer { get; set; }
+        public virtual Petitioner Signer { get; set; }
         public string SignatureDetails { get; set; }
         public int Traction { get; set; }
     }

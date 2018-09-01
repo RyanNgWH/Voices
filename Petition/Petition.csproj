@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="wwwroot\petition-photos\" />
   </ItemGroup>
 
 </Project>

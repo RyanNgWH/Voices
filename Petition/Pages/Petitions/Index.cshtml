@@ -17,9 +17,6 @@
                 @Html.DisplayNameFor(model => model.PetitionModel[0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PetitionModel[0].Address)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PetitionModel[0].Description)
             </th>
             <th>
@@ -29,16 +26,10 @@
                 @Html.DisplayNameFor(model => model.PetitionModel[0].Photo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PetitionModel[0].Category)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PetitionModel[0].Status)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PetitionModel[0].Votes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PetitionModel[0].Name)
             </th>
             <th></th>
         </tr>
@@ -50,9 +41,6 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
@@ -62,16 +50,10 @@
                 @Html.DisplayFor(modelItem => item.Photo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Votes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.PetitionModelId">Edit</a> |

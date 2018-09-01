@@ -40,17 +40,17 @@
                     <li><a asp-page="/Index">Home</a></li>
                     <li><a asp-page="/About">About</a></li>
                     <li><a asp-page="/Contact">Contact</a></li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
+                        @if (User.Identity.IsAuthenticated)
+                        {
                         var Petitioner = await _userManager.GetUserAsync(User);
                         <li class="mainnav_right"><span>Hello, @Petitioner.FullName</span></li>
                         <li class="mainnav_right"><a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post">Logout</a></li>
-                    }
-                    else
-                    {
-                        <li class="mainnav_right"><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-                        <li class="mainnav_right"><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
-                    }
+                        }
+                        else
+                        {
+                            <li class="mainnav_right"><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+                            <li class="mainnav_right"><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+                        }
                 </ul>
             </div>
         </div>

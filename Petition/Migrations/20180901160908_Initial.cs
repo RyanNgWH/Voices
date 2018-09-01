@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Petition.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,7 +40,12 @@ namespace Petition.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    NRIC = table.Column<string>(nullable: true),
+                    FullName = table.Column<string>(nullable: true),
+                    ResidentialAddress = table.Column<string>(nullable: true),
+                    ProfilePicture = table.Column<string>(nullable: true),
+                    Region = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -153,6 +158,32 @@ namespace Petition.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "PetitionModel",
+                columns: table => new
+                {
+                    PetitionModelId = table.Column<string>(nullable: false),
+                    Title = table.Column<string>(nullable: false),
+                    Region = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: false),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    Photo = table.Column<string>(nullable: false),
+                    Category = table.Column<string>(nullable: false),
+                    Status = table.Column<string>(nullable: true),
+                    Votes = table.Column<int>(nullable: false),
+                    CreatorId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PetitionModel", x => x.PetitionModelId);
+                    table.ForeignKey(
+                        name: "FK_PetitionModel_AspNetUsers_CreatorId",
+                        column: x => x.CreatorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +222,11 @@ namespace Petition.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PetitionModel_CreatorId",
+                table: "PetitionModel",
+                column: "CreatorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -209,6 +245,9 @@ namespace Petition.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "PetitionModel");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
