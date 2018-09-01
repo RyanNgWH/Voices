@@ -1,0 +1,80 @@
+﻿.title {
+    text-align: center;
+    font-size: 50px;
+    font-weight: 800;
+    margin-top: 25px;
+    margin-bottom: 40px;
+}
+
+.left {
+    display: inline-block;
+    width: 65%;
+    float: left;
+}
+
+.right {
+    display: inline-block;
+    background-color: floralwhite;
+    width: 35%;
+    float: left;
+}
+
+.image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    padding-right: 10px;
+}
+
+.rightTop {
+    padding: 10px;
+}
+
+.user {
+    text-decoration: none;
+    border-spacing: 5px;
+}
+
+    .user td {
+        padding: 15px 5px;
+    }
+
+.tdSpecial {
+    width: 50px;
+    height: 72px;
+} 
+
+.userDetails {
+    font-size: 15px;
+}
+
+.icon {
+    height: 40px;
+    width: 40px;
+}
+
+.description {
+    padding: 5px;
+    padding-right: 10px;
+    font-size: 20px;
+    text-align: justify;
+}
+
+.descriptionHeader{
+    padding: 5px;
+    font-weight: bold;
+}
+
+.button{
+    width: 100%;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.button:hover{
+    background-color: darkgrey;
+}
+
+.rightBottom {
+    padding: 10px;
+}
