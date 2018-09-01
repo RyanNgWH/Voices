@@ -34,6 +34,11 @@ namespace Petition.Pages.Petitions
                 return Page();
             }
 
+            PetitionModel.DateCreated = DateTime.Now;
+            PetitionModel.Status = "In Progress";
+            PetitionModel.Votes = 0;
+            PetitionModel.Name = User.Identity.Name.ToString();
+
             _context.PetitionModel.Add(PetitionModel);
             await _context.SaveChangesAsync();
 

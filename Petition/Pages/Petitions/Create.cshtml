@@ -15,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="PetitionModel.Title" class="control-label"></label>
-                <input asp-for="PetitionModel.Title" class="form-control" />
+                <input asp-for="PetitionModel.Title" class="form-control" required/>
                 <span asp-validation-for="PetitionModel.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -25,13 +25,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="PetitionModel.Description" class="control-label"></label>
-                <input asp-for="PetitionModel.Description" class="form-control" />
+                <input asp-for="PetitionModel.Description" class="form-control" required/>
                 <span asp-validation-for="PetitionModel.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PetitionModel.DateCreated" class="control-label"></label>
-                <input asp-for="PetitionModel.DateCreated" class="form-control" />
-                <span asp-validation-for="PetitionModel.DateCreated" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PetitionModel.Photo" class="control-label"></label>
@@ -42,16 +37,6 @@
                 <label asp-for="PetitionModel.Category" class="control-label"></label>
                 <input asp-for="PetitionModel.Category" class="form-control" />
                 <span asp-validation-for="PetitionModel.Category" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PetitionModel.Status" class="control-label"></label>
-                <input asp-for="PetitionModel.Status" class="form-control" />
-                <span asp-validation-for="PetitionModel.Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PetitionModel.Votes" class="control-label"></label>
-                <input asp-for="PetitionModel.Votes" class="form-control" />
-                <span asp-validation-for="PetitionModel.Votes" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PetitionModel.Name" class="control-label"></label>
