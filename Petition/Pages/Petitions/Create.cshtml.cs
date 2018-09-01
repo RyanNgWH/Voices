@@ -70,7 +70,7 @@ namespace Petition.Pages.Petitions
             _context.PetitionModel.Add(InputPetitionModel);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Index");
         }
     }
 }

@@ -38,14 +38,12 @@
             </a>
             <div class="p_mainnav">
                 <ul class="p_navbar_list">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
+                    <li><a asp-page="/Petitions/Create">Create New Petition</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         var Petitioner = await _userManager.GetUserAsync(User);
                         <li class="mainnav_right"><span>Hello, @Petitioner.FullName</span></li>
-                        <li class="mainnav_right"><a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post">Logout</a></li>
+                        <li class="mainnav_right"><form id="logout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post"><a href="#" onclick="document.getElementById('logout').submit();">Logout</a></form></li>
                     }
                     else
                     {
@@ -58,7 +56,7 @@
         @if (User.Identity.IsAuthenticated)
         {
             var Petitioner = await _userManager.GetUserAsync(User);
-            <div id="region" style="position: absolute; top: 45px; left: 65%;"><span style="font-weight: bold; font-size: 15px;">@Petitioner.Region</span></div>
+            <div id="region" style="position: absolute; top: 45px; left: 55%;"><span style="font-weight: bold; font-size: 15px;">@Petitioner.Region</span></div>
         }
     </nav>
 

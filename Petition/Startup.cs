@@ -49,6 +49,9 @@ namespace Petition
             {
                 options.LoginPath = "/Identity/Account/Login";
             });
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
         }
         
 
@@ -69,6 +72,7 @@ namespace Petition
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+            app.UseSession();
 
             app.UseMvc();
         }

@@ -61,10 +61,10 @@
                     <strong>@Html.DisplayFor(model => model.PetitionModel.Votes)</strong> users support this voice!
                 </td>
             </tr>
-            <tr>
+            <tr style="border-bottom: 1px solid black;">
                 <td colspan="2">
                     <form method="post" asp-page-handler="AddSupport">
-                        @if (Model.hasVoted)
+                        @if (Model.hasVoted == false)
                         {
                             <button type="submit" class="btn btn-action btn-big btn-full js-sign-button button">
                                 Support this voice
@@ -72,10 +72,19 @@
                         }
                         else
                         {
-                            <button class="btn btn-action btn-big btn-full js-sign-button button">
+                            <button type="button" class="btn btn-action btn-big btn-full js-sign-button button">
                                 Thanks for your support! :)
                             </button>
                         }
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <form method="post" asp-page-handler="AddFeedback">
+                        <input asp-for="@Model.Feedback" class="form-control" placeholder="Add an optional feedback" />
+                        <br />
+                        <button type="submit" class="btn btn-action btn-big btn-full js-sign-button button">Submit Feedback</button>
                     </form>
                 </td>
             </tr>
@@ -89,20 +98,35 @@
                     <h2 class="descriptionHeader" style="padding: 0; margin: 0;">Reasons for supporting</h2>
                 </td>
             </tr>
-            <tr>
-                <td class="tdSpecial">
-                    <img class="icon" src="~/images/default_pic.png" />
-                </td>
-                <td>
-                    <strong>(Name of User)</strong>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    (Reasons)
-                </td>
-            </tr>
+            @if (Model.SignatureList.Count == 0)
+            {
+                    <tr>
+                        <td colspan="2">
+                            <strong>There are currently no feedbacks for this voice, be the first one to add!</strong>
+                        </td>
+                    </tr>
+            }
+            else
+            {
+                foreach (var s in Model.SignatureList)
+                {
+                    <tr>
+                        <td class="tdSpecial" colspan="2">
+                            <img class="icon" src="~/images/default_pic.png" style="margin-right: 35px;"/>
+                            <span style="font-weight: bold;">@Model.CurrentUser.FullName</span>
+                        </td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid black;">
+                        <td>
+                            @s.DateCreated
+                        </td>
+                        <td>
+                            @s.SignatureDetails
+                        </td>
+                    </tr>
+                }
+
+            }
         </table>
     </div>
 </div>
