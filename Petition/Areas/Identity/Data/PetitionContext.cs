@@ -25,5 +25,6 @@ namespace Petition.Models
         }
 
         public DbSet<Petition.Data.PetitionModel> PetitionModel { get; set; }
+        public DbSet<Petition.Data.Support> Support { get; set; }
     }
 }
