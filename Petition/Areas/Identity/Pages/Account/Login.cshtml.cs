@@ -17,12 +17,14 @@ namespace Petition.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly SignInManager<Petitioner> _signInManager;
+        private readonly UserManager<Petitioner> _userManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<Petitioner> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<Petitioner> signInManager, ILogger<LoginModel> logger, UserManager<Petitioner> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
         }
 
         [BindProperty]
