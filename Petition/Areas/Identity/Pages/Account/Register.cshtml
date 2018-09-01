@@ -63,7 +63,6 @@
                         let response = JSON.parse(resp);
                         var region = document.getElementById("region");
                         region.value = response[0]["pln_area_n"];
-                        alert(region.value);
                     }
                 }
                 xhttp2.open("GET", "https://developers.onemap.sg/privateapi/popapi/getPlanningarea?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE5NDMsInVzZXJfaWQiOjE5NDMsImVtYWlsIjoiYnJpYW5AYmNoZXd5LmNvbSIsImZvcmV2ZXIiOmZhbHNlLCJpc3MiOiJodHRwOlwvXC9vbTIuZGZlLm9uZW1hcC5zZ1wvYXBpXC92MlwvdXNlclwvc2Vzc2lvbiIsImlhdCI6MTUzNTc3NDQxOCwiZXhwIjoxNTM2MjA2NDE4LCJuYmYiOjE1MzU3NzQ0MTgsImp0aSI6Ijg0NDgxNWMzM2M5OWJiMDk5OGZkNmY5YmJjNTM5YTlkIn0.ZEY0G0asd3U2UqWULR3tBCIPeKFCLQQoxD-ckRUzW0I&lat=" + latitude + "&lng=" + longitude);
