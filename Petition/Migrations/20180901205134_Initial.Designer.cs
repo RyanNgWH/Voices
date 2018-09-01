@@ -10,7 +10,7 @@ using Petition.Models;
 namespace Petition.Migrations
 {
     [DbContext(typeof(PetitionContext))]
-    [Migration("20180901160908_Initial")]
+    [Migration("20180901205134_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -197,9 +197,6 @@ namespace Petition.Migrations
                     b.Property<string>("PetitionModelId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Category")
-                        .IsRequired();
-
                     b.Property<string>("CreatorId");
 
                     b.Property<DateTime>("DateCreated");
@@ -207,8 +204,7 @@ namespace Petition.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
-                    b.Property<string>("Photo")
-                        .IsRequired();
+                    b.Property<string>("Photo");
 
                     b.Property<string>("Region");
 
@@ -224,6 +220,24 @@ namespace Petition.Migrations
                     b.HasIndex("CreatorId");
 
                     b.ToTable("PetitionModel");
+                });
+
+            modelBuilder.Entity("Petition.Data.Support", b =>
+                {
+                    b.Property<string>("SupportId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("PetitionModelId");
+
+                    b.Property<string>("SupporterId");
+
+                    b.HasKey("SupportId");
+
+                    b.HasIndex("PetitionModelId");
+
+                    b.HasIndex("SupporterId");
+
+                    b.ToTable("Support");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -276,6 +290,17 @@ namespace Petition.Migrations
                     b.HasOne("Petition.Data.Petitioner", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatorId");
+                });
+
+            modelBuilder.Entity("Petition.Data.Support", b =>
+                {
+                    b.HasOne("Petition.Data.PetitionModel", "Petition")
+                        .WithMany()
+                        .HasForeignKey("PetitionModelId");
+
+                    b.HasOne("Petition.Data.Petitioner", "Supporter")
+                        .WithMany()
+                        .HasForeignKey("SupporterId");
                 });
 #pragma warning restore 612, 618
         }

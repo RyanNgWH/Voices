@@ -167,8 +167,7 @@ namespace Petition.Migrations
                     Region = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: false),
                     DateCreated = table.Column<DateTime>(nullable: false),
-                    Photo = table.Column<string>(nullable: false),
-                    Category = table.Column<string>(nullable: false),
+                    Photo = table.Column<string>(nullable: true),
                     Status = table.Column<string>(nullable: true),
                     Votes = table.Column<int>(nullable: false),
                     CreatorId = table.Column<string>(nullable: true)
@@ -179,6 +178,31 @@ namespace Petition.Migrations
                     table.ForeignKey(
                         name: "FK_PetitionModel_AspNetUsers_CreatorId",
                         column: x => x.CreatorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Support",
+                columns: table => new
+                {
+                    SupportId = table.Column<string>(nullable: false),
+                    PetitionModelId = table.Column<string>(nullable: true),
+                    SupporterId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Support", x => x.SupportId);
+                    table.ForeignKey(
+                        name: "FK_Support_PetitionModel_PetitionModelId",
+                        column: x => x.PetitionModelId,
+                        principalTable: "PetitionModel",
+                        principalColumn: "PetitionModelId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Support_AspNetUsers_SupporterId",
+                        column: x => x.SupporterId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -227,6 +251,16 @@ namespace Petition.Migrations
                 name: "IX_PetitionModel_CreatorId",
                 table: "PetitionModel",
                 column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Support_PetitionModelId",
+                table: "Support",
+                column: "PetitionModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Support_SupporterId",
+                table: "Support",
+                column: "SupporterId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -247,10 +281,13 @@ namespace Petition.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "PetitionModel");
+                name: "Support");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "PetitionModel");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
